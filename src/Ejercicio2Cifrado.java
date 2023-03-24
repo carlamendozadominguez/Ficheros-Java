@@ -5,7 +5,6 @@ import java.io.IOException;
 public class Ejercicio2Cifrado {
 
     public static void main(String[] args) {
-
         // Array con el abecedario
         char[] abecedario = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -25,28 +24,31 @@ public class Ejercicio2Cifrado {
                 // Obtener el índice de la letra en el abecedario
                 int indice = 0;
                 Boolean encontrado = false;
-                    while (!encontrado && indice < abecedario.length) {
-                        if (abecedario[indice] == letra) {
-                            encontrado = true;
-                        }
+                while (!encontrado && indice < abecedario.length) {
+                    if (abecedario[indice] == letra) {
+                        encontrado = true;
+                    } else {
                         indice++;
+                    }
                 }
 
                 // imprimir tal cual el espacio
-                if(letra == ' ') {
+                if (letra == ' ') {
                     System.out.print(" ");
-                }
-                else {
+                } else {
                     // Calcular el nuevo índice con el desplazamiento
-                    int nuevoIndice = (indice - desplazamiento -1 )  % abecedario.length;
+                    int nuevoIndice = indice - desplazamiento;
+                    if (nuevoIndice < 0) {
+                        nuevoIndice = nuevoIndice + abecedario.length;
+                    }
                     // Imprimir la letra cifrada
                     System.out.print(abecedario[nuevoIndice]);
                 }
             }
 
             lector.close();
-        }
-        catch (IOException e) {
+
+        } catch (IOException e) {
             System.out.println("Error al leer el fichero");
         }
     }
